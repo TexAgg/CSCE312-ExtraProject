@@ -24,4 +24,4 @@ if args['compiler_dir']:
 	jack_compiler = args['compiler_dir']
 
 os.system("bash " + jack_compiler + " " + cwd)
-os.system("bash " + vm_emulator + " " + cwd)
+#os.system("bash " + vm_emulator + " " + cwd)

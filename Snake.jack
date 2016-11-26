@@ -4,17 +4,52 @@ class Snake {
 	
 	// Number of blocks in the snake.
 	field int length;
-	// Container of all the blocks in the snake.
+	/* An array of Points.
+	Container of all the blocks in the snake. */
 	field Array body;
 	// How much food has been eaten.
 	field int foodEaten;
+	// Speeds.
+	field int dx;
+	field int dy;
 
 	constructor Snake new() {
+		// http://stackoverflow.com/a/36886969/5415895
+		//var int getX;
+		//var int getY;
+		var Point p;
+		
 		// The snake can't be longer than 30 pixels.
-		let body - Array.new(30);
+		let body = Array.new(30);
+		let body[0] = Point.new(30,30);
+		let body[1] = Point.new(30, 29);
+		let body[2] = Point.new(30, 28);
+		let body[3] = Point.new(30, 27);
+		let body[4] = Point.new(30, 26);
 		// Initial length is 5.
 		let length = 5;
 
+		let p = body[0];
+		//var int getX;
+		//let getX = body[0].getX();
+		//var int getY;
+		//let getY = body[0].getY();
+		do draw(p.getX(), p.getY(), true);
+
 		return this;
+	}
+
+	// Like c++ delete I guess.
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method void draw(int x, int y, boolean col) {
+		return;
+	}
+
+	method void move() {
+		return;
 	}
 }
