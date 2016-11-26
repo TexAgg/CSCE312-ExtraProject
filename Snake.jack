@@ -1,0 +1,20 @@
+// Chapter 12
+
+class Snake {
+	
+	// Number of blocks in the snake.
+	field int length;
+	// Container of all the blocks in the snake.
+	field Array body;
+	// How much food has been eaten.
+	field int foodEaten;
+
+	constructor Snake new() {
+		// The snake can't be longer than 30 pixels.
+		let body - Array.new(30);
+		// Initial length is 5.
+		let length = 5;
+
+		return this;
+	}
+}
