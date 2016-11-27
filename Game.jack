@@ -1,0 +1,19 @@
+class Game {
+
+    //Define the variables
+    field Snake snake;
+    field int score;
+    field int level;
+    field int delay;
+    field Grid grid;
+
+    constructor Game new(){
+
+        //Initialize the game variables
+        let score = 0;
+        let level = 1;
+        let delay = 100;
+        let grid = Grid.new(this, 512, 256);
+    }
+
+}
