@@ -1,0 +1,37 @@
+class Grid {
+
+    //Using 'field' to indicate private variables as per the JackAPI
+    field int x;
+    field int y;
+    field Array grid;
+    field int foodPositionOne;
+    field int foodPositionTwo;
+    field Game game;
+
+    constructor Grid new (Game myGame, int myx, int myy) {
+
+        let game = myGame;
+        let x = myx / 4;
+        let y = (myy - 16) / 4;
+
+        do createGrid();
+        return this;
+    }
+
+    method void dispose(){
+        var int current;
+        var Array myGrid;
+        let current = 0;
+        while (current < x) {
+            let myGrid = grid[current];
+            do myGrid.dispose();
+            let current = current + 1;
+        }
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void createFood(){
+    
+    }
+}
