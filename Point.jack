@@ -1,0 +1,29 @@
+class Point {
+	field int x;
+	field int y;
+
+	constructor Point new(int xp, int yp) {
+		let x = xp;
+		let y = yp;
+
+		return this;
+	}
+
+	method void setX(int xp) {
+		let x = xp;
+		return;
+	}
+	
+	method void setY(int yp) {
+		let y = yp;
+		return;
+	}
+
+	method int getX() {
+		return x;
+	}
+
+	method int getY() {
+		return y;
+	}
+}

@@ -1,0 +1,8 @@
+class Main {
+    function void main() {
+		var Snake snek;
+		let snek = Snake.new();
+		do snek.dispose();
+		return;
+	}
+}

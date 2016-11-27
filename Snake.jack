@@ -1,0 +1,76 @@
+// Chapter 12
+
+class Snake {
+	
+	// Number of blocks in the snake.
+	field int length;
+	/* An array of Points.
+	Container of all the blocks in the snake. */
+	field Array body;
+	// How much food has been eaten.
+	field int foodEaten;
+	// Speeds.
+	field int dx;
+	field int dy;
+
+	constructor Snake new() {
+		// http://stackoverflow.com/a/36886969/5415895
+		var Point p;
+		
+		// The snake can't be longer than 30 pixels.
+		let body = Array.new(30);
+		let body[0] = Point.new(30,30);
+		let body[1] = Point.new(30, 29);
+		let body[2] = Point.new(30, 28);
+		let body[3] = Point.new(30, 27);
+		let body[4] = Point.new(30, 26);
+		// Initial length is 5.
+		let length = 5;
+
+		let p = body[0];
+		do draw(p.getX(), p.getY(), true);
+
+		return this;
+	}
+
+	// Like c++ delete I guess.
+	method void dispose() {
+		do body.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	// Draws the snake.
+	// I guess just call this every few milliseconds or something.
+	method void draw(int x, int y, boolean color) {
+		var int i;
+		var Point p;
+		
+		do Screen.setColor(color);
+
+		// Loop through body and color in the pixels.
+		let i = 0;
+		while (i < length) {
+			let p = body[i];
+			do Screen.drawPixel(p.getX(), p.getY());
+
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	// Move the snake by taking the last block and moving it to the front.
+	method void move() {
+		return;
+	}
+
+	// Add a block to the end.
+	method void grow() {
+		var Point p;
+		
+		let length = length + 1;
+
+		return;
+	}
+}

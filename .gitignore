@@ -1,3 +1,14 @@
 .vscode
 *.log
 *.log.*
+
+# VM files except the important ones.
+*.vm
+!Array.vm
+!Keyboard.vm
+!Math.vm
+!Memory.vm
+!Output.vm
+!Screen.vm
+!String.vm
+!Sys.vm
