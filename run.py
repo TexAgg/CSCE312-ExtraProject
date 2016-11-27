@@ -13,7 +13,7 @@ vm_emulator = "/home/matt/Dropbox/College/2016-2017/Fall/CSCE-312/nand2tetris/to
 # Current directory.
 cwd = os.path.dirname(os.path.realpath(__file__))
 
-parser = argparse.ArgumentParser(description='Run the thingy.')
+parser = argparse.ArgumentParser(description='Compile the Jack files into .vm files.')
 parser.add_argument('-v','--vm_dir', help='Directory for VM emulator. Defaults to ' + vm_emulator, required=False)
 parser.add_argument('-c', '--compiler_dir', help='Directory for the Jack compiler. Defaults to ' + jack_compiler, required=False)
 parser.add_argument('-r', '--run', action='store_true', help='Whether to start the emulator.', required=False)

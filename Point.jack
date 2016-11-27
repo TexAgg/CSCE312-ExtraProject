@@ -9,6 +9,11 @@ class Point {
 		return this;
 	}
 
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+
 	method void setX(int xp) {
 		let x = xp;
 		return;

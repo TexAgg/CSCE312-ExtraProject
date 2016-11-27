@@ -12,23 +12,28 @@ class Snake {
 	// Speeds.
 	field int dx;
 	field int dy;
+	// This is the length of each block.
+	field int l;
 
 	constructor Snake new() {
 		// http://stackoverflow.com/a/36886969/5415895
-		var Point p;
+		//var Point p;
 		
+		let l = 5;
 		// The snake can't be longer than 30 pixels.
 		let body = Array.new(30);
-		let body[0] = Point.new(30,30);
-		let body[1] = Point.new(30, 29);
-		let body[2] = Point.new(30, 28);
-		let body[3] = Point.new(30, 27);
-		let body[4] = Point.new(30, 26);
+		let body[4] = Point.new(0, 0);
+		let body[3] = Point.new(0, l);
+		let body[2] = Point.new(0, 2*l);
+		let body[1] = Point.new(0, 3*l);
+		let body[0] = Point.new(0, 4*l);
 		// Initial length is 5.
 		let length = 5;
+		let dx = 1;
+		let dy = 0;
 
-		let p = body[0];
-		do draw(p.getX(), p.getY(), true);
+		//let p = body[0];
+		do draw();
 
 		return this;
 	}
@@ -40,19 +45,22 @@ class Snake {
 		return;
 	}
 
-	// Draws the snake.
-	// I guess just call this every few milliseconds or something.
-	method void draw(int x, int y, boolean color) {
+	/*
+	Draws the snake.
+	I guess just call this every few milliseconds or something.
+	*/
+	method void draw() {
 		var int i;
 		var Point p;
 		
-		do Screen.setColor(color);
+		do Screen.clearScreen();
+		do Screen.setColor(true);
 
 		// Loop through body and color in the pixels.
 		let i = 0;
 		while (i < length) {
 			let p = body[i];
-			do Screen.drawPixel(p.getX(), p.getY());
+			do Screen.drawRectangle(p.getX(), p.getY(), p.getX() + l, p.getY() + l);
 
 			let i = i + 1;
 		}
@@ -60,17 +68,56 @@ class Snake {
 		return;
 	}
 
-	// Move the snake by taking the last block and moving it to the front.
-	method void move() {
+	/* 
+	Move the snake by taking the last block and moving it to the front.
+	ddx or ddy should either be 1, -1, or 0, and exactly one of them must be 0.
+	To have the snake do the pacman thing when hitting a wall, take the points mod the dimenions.
+	*/
+	method void move(int ddx, int ddy) {
+		var Point last, p;
+		var Array newArray;
+		var int i;
+
+		let p = body[0];
+		//let last = body[length - 1];
+		let newArray = Array.new(30);
+		let newArray[0] = Point.new(p.getX() + ddx, p.getY() + ddy);
+		
+		let i = length;
+		while (i > 0) {
+			let newArray[i] = body[i-1];
+			
+			let i = i - 1;
+		}
+		let body = newArray;
+		/*
+		let i = 0;
+		while (i < length) {
+			let body[i] = newArray[i];
+			let i = i + 1;
+		}
+		*/
+		//do newArray.dispose();
+		do draw();
+
 		return;
 	}
 
 	// Add a block to the end.
 	method void grow() {
-		var Point p;
+		var Point p, last;
 		
+		let last = body[length - 1];
+		let p = Point.new(last.getX()+l, last.getY()+l);
+		let body[length] = p;
 		let length = length + 1;
 
+		do draw();
+
 		return;
+	}
+
+	method int getLength() {
+		return length;
 	}
 }
