@@ -1,6 +1,7 @@
 .vscode
 *.log
 *.log.*
+Snake.zip
 
 # VM files except the important ones.
 *.vm

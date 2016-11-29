@@ -1,16 +1,15 @@
 class Main {
     function void main() {
 
-		/*
 		// Just testing Snake.
 		var Snake snek;
+		//do Output.moveCursor(100, 100);
 		let snek = Snake.new();
 		while (true) {
-			do Sys.wait(300);
+			do Sys.wait(3000);
 			do snek.move(0, 1);
 		}
 		do snek.dispose();
-		*/
 
 		return;
 	}

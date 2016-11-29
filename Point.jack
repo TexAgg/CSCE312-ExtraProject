@@ -31,4 +31,14 @@ class Point {
 	method int getY() {
 		return y;
 	}
+
+	method void print() {
+		do Output.printChar("(");
+		do Output.printInt(x);
+		do Output.printChar(",");
+		do Output.printInt(y);
+		do Output.printChar(")");
+		do Output.println();
+		return;
+	}
 }

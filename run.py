@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Runs the game.
+# Compiles .jack files to .vm files.
 
 import os
 import sys
