@@ -7,6 +7,7 @@ class Grid {
     field int foodPositionOne;
     field int foodPositionTwo;
     field Game game;
+    var int seed;
 
     constructor Grid new (Game myGame, int myx, int myy) {
 
@@ -33,5 +34,73 @@ class Grid {
 
     method void createFood(){
     
+        var boolean isEmpty;
+        var int randomLocationx;
+        var int randomLocationy;
+
+        let isEmpty = false;
+        while (isEmpty == false) {
+            let randomLocationx = randomRange(x);
+            let randomLocationy = randomRange(y);
+            if (isOccupied(randomLocationx, randomLocationy) == true) {
+                let isEmpty = true;
+            }
+        }
+        let foodPositionOne = randomLocationx;
+        let foodPositionTwo = randomLocationy;
+        return;
+    }
+
+    method void displayFood(){
+        do Screen.setColor(true);
+        do Screen.drawCircle((foodPositionOne*4) + 2, (foodPositionTwo*4) +2, 2);
+        return;
+    }
+
+    method boolean isOccupied(int x, int y) {
+        var Array myGrid;
+        let myGrid = grid[x];
+        if (myGrid[y]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    method void markAsOccupied(int x, int y, boolean occupy){
+        var Array myGrid;
+        let myGrid = grid[x];
+        let myGrid[y] = occupy;
+        return;
+    }
+
+    //Section for creating the random seeds
+
+    function void createSeed(int mySeed){
+        let seed = mySeed;
+        return;
+    }
+
+    function int returnRandom(){
+        let seed = seed + 20251;
+
+        if (seed < 0) {
+            let seed = seed - 32767 - 1;
+        }
+        return seed;
+    }
+
+    function int randomRange(int myRange){
+        var int w;
+        var int z;
+        let w = 1;
+        while (w < myRange) {
+            let w = w * 2 + 1;
+        }
+        let z = returnRandom & w;
+        while (z > myRange) {
+            let z = returnRandom & w;
+        }
+        return z;
     }
 }
