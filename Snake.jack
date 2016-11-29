@@ -16,9 +16,6 @@ class Snake {
 	field int l;
 
 	constructor Snake new() {
-		// http://stackoverflow.com/a/36886969/5415895
-		//var Point p;
-		
 		let l = 5;
 		// The snake can't be longer than 30 pixels.
 		let body = Array.new(30);
@@ -74,12 +71,11 @@ class Snake {
 	To have the snake do the pacman thing when hitting a wall, take the points mod the dimenions.
 	*/
 	method void move(int ddx, int ddy) {
-		var Point last, p;
+		var Point p;
 		var Array newArray;
 		var int i;
 
 		let p = body[0];
-		//let last = body[length - 1];
 		let newArray = Array.new(30);
 		let newArray[0] = Point.new(p.getX() + ddx, p.getY() + ddy);
 		

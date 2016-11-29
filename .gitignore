@@ -12,3 +12,6 @@
 !Screen.vm
 !String.vm
 !Sys.vm
+
+# Testing the snake logic in javascript.
+jstest
