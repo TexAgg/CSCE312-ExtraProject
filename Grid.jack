@@ -57,6 +57,31 @@ class Grid {
         return;
     }
 
+    method void drawGrid(){
+        var int thisx; 
+        var int thisy;
+        var Array myGrid;
+
+        let grid = Array.new(x);
+        let thisx = 0;
+
+        while (thisx < x) {
+            let myGrid = Array.new(y);
+            let thisy = 0;
+            while (thisy < y ){
+                let myGrid[thisy] = false;
+                let thisy = thisy + 1;
+            }
+            let grid[thisx] = myGrid;
+            let thisx = thisx + 1;
+        }
+        
+        do Screen.setColor(true);
+        do Screen.drawLine(0, (y*4) + 1, (x*4-1), (y*4) + 1);
+
+        return;
+    }
+
     method boolean isOccupied(int x, int y) {
         var Array myGrid;
         let myGrid = grid[x];
