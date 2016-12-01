@@ -5,7 +5,7 @@ class Main {
 		var Snake snek;
 		let snek = Snake.new();
 		while (true) {
-			do Sys.wait(3000);
+			do Sys.wait(1000);
 			do snek.move(0, 1);
 		}
 		do snek.dispose();

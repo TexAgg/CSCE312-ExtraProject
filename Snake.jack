@@ -54,7 +54,8 @@ class Snake {
 		let i = 0;
 		while (i < length) {
 			let p = body[i];
-			do wrap(p);
+			let p = wrap(p);
+			let body[i] = p;
 			do Screen.drawRectangle(p.getX(), p.getY(), p.getX() + l, p.getY() + l);
 
 			let i = i + 1;
@@ -65,7 +66,8 @@ class Snake {
 
 	/* 
 	Move the snake by taking the last block and moving it to the front.
-	ddx or ddy should either be 1, -1, or 0, and exactly one of them must be 0.
+	ddx or ddy should either be 1, -1, or 0. 
+	Also, exactly one of them must be 0, and the other must be nonzero.
 	*/
 	method void move(int ddx, int ddy) {
 		var Point p, last;
@@ -104,30 +106,30 @@ class Snake {
 	}
 
 	// https://bitbucket.org/gaikema/snake/src/c2de2507858e2c67f0952f37590978b3152ccf64/Snake.ts?at=master&fileviewer=file-view-default#Snake.ts-67
-	method void wrap(Point p) {
+	method Point wrap(Point p) {
 		var int width, height;
-		let width = 256;
-		let height = 512;
+		let width = 511;
+		let height = 255;
 		
 		if (p.getX() < 0) {
 			do p.setX(width);
-			return;
+			return p;
 		}
-		if (p.getX() = width) {
+		if (~(p.getX()+l < width)) {
 			do p.setX(0);
-			return;
+			return p;
 		}
 
 		if (p.getY() < 0) {
 			do p.setY(height);
-			return;
+			return p;
 		}
-		if (p.getY() = height) {
+		if (~(p.getY()+l < height)) {
 			do p.setY(0);
-			return;
+			return p;
 		}
 		
-		return;
+		return p;
 	}
 
 	method int getLength() {
