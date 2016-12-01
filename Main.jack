@@ -3,7 +3,6 @@ class Main {
 
 		// Just testing Snake.
 		var Snake snek;
-		//do Output.moveCursor(100, 100);
 		let snek = Snake.new();
 		while (true) {
 			do Sys.wait(3000);

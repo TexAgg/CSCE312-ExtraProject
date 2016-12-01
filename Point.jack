@@ -32,6 +32,7 @@ class Point {
 		return y;
 	}
 
+	// For debugging. Print the point.
 	method void print() {
 		do Output.printChar("(");
 		do Output.printInt(x);
