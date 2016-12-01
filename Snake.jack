@@ -97,6 +97,7 @@ class Snake {
 		
 		let last = body[length - 1];
 		let p = Point.new(last.getX()-l, last.getY()-l);
+		let p = wrap(p);
 		let body[length] = p;
 		let length = length + 1;
 

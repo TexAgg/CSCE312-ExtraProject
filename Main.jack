@@ -7,6 +7,7 @@ class Main {
 		while (true) {
 			do Sys.wait(1000);
 			do snek.move(0, 1);
+			//do snek.grow();
 		}
 		do snek.dispose();
 
