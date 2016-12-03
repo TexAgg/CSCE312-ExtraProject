@@ -118,6 +118,10 @@ class Snake {
 		
 		if (p.getX() < 0) {
 			do p.setX(width-l);
+			
+			do Screen.setColor(false);
+			do Screen.drawRectangle(p.getX(), p.getY(), p.getX() + l, p.getY() + l);
+
 			return p;
 		}
 		if (~(p.getX()+l < width)) {
@@ -127,6 +131,10 @@ class Snake {
 
 		if (p.getY() < 0) {
 			do p.setY(height-l);
+
+			do Screen.setColor(false);
+			do Screen.drawRectangle(p.getX(), p.getY(), p.getX() + l, p.getY() + l);
+
 			return p;
 		}
 		if (~(p.getY()+l < height)) {
