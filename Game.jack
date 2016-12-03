@@ -45,22 +45,22 @@ class Game {
             if (key = 81) {
                 let close = true;
             } 
-            if (key = 130) {
+            if (key = 130 & ~(dx = 1)) {
                 //left arrow --> set snake directions
                 let dx = -1;
                 let dy = 0;
             }
-            if (key = 131) {
+            if (key = 131 & ~(dy = 1)) {
                 //up arrow --> set snake direction
                 let dx = 0;
                 let dy = -1;
             }
-            if (key = 132) {
+            if (key = 132 & ~(dx = -1)) {
                 //right arrow --> set snake directions
                 let dx = 1;
                 let dy = 0;
             }
-            if (key = 133) {
+            if (key = 133 & ~(dy = -1)) {
                 //down arrow --> set snake direction
                 let dx = 0;
                 let dy = 1;

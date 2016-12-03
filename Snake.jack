@@ -23,6 +23,7 @@ class Snake {
 		let body[4] = Point.new(0, 0);
 		// Initial length is 5.
 		let length = 5;
+		let foodEaten = 0;
 
 		//let p = body[0];
 		do draw();
@@ -48,7 +49,6 @@ class Snake {
 		//do printBody();
 		
 		//do Screen.clearScreen();
-		//do Screen.setColor(false);
 		do Screen.setColor(true);
 
 		// Loop through body and color in the pixels.
@@ -102,7 +102,6 @@ class Snake {
 		
 		let last = body[length - 1];
 		let p = Point.new(last.getX()-l, last.getY()-l);
-		let p = wrap(p);
 		let body[length] = p;
 		let length = length + 1;
 
@@ -118,7 +117,7 @@ class Snake {
 		let height = 255;
 		
 		if (p.getX() < 0) {
-			do p.setX(width);
+			do p.setX(width-l);
 			return p;
 		}
 		if (~(p.getX()+l < width)) {
@@ -127,7 +126,7 @@ class Snake {
 		}
 
 		if (p.getY() < 0) {
-			do p.setY(height);
+			do p.setY(height-l);
 			return p;
 		}
 		if (~(p.getY()+l < height)) {
@@ -136,6 +135,36 @@ class Snake {
 		}
 		
 		return p;
+	}
+
+	/*
+	Checks if a number is divisible by 5 by checking the last digit.
+	I have no idea if this works.
+	*/
+	method boolean isDivisibleBy5(int n) {
+		var String str;
+		var int strlen;
+		var char last;
+
+		do str.intValue(n);
+		let strlen = str.length();
+		let last = str.charAt(strlen - 1);
+		if (last = 0 | last = 5) {
+			return true;
+		}
+		return false;
+	}
+
+	method void eatFood() {
+		let foodEaten = foodEaten + 1;
+		if (isDivisibleBy5(foodEaten)) {
+			do grow();
+		}
+		return;
+	}
+
+	method Point getHead() {
+		return body[0];
 	}
 
 	method int getLength() {
