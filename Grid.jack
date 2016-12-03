@@ -1,0 +1,146 @@
+class Grid {
+
+    //Using 'field' to indicate private variables as per the JackAPI
+    field int x;
+    field int y;
+    field Array grid;
+    field int foodPositionOne;
+    field int foodPositionTwo;
+    field Game game;
+    static int seed;
+
+    constructor Grid new(Game myGame, int myx, int myy) {
+
+        let game = myGame;
+        let x = myx / 4;
+        let y = (myy - 16) / 4;
+
+        do drawGrid();
+        return this;
+    }
+
+    method void dispose(){
+        var int current;
+        var Array myGrid;
+        let current = 0;
+        while (current < x) {
+            let myGrid = grid[current];
+            do myGrid.dispose();
+            let current = current + 1;
+        }
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void createFood(){
+    
+        var boolean isEmpty;
+        var int randomLocationx;
+        var int randomLocationy;
+
+        let isEmpty = false;
+        while (~isEmpty) {
+            let randomLocationx = randomRange(x);
+            let randomLocationy = randomRange(y);
+            if (isOccupied(randomLocationx, randomLocationy)) {
+                let isEmpty = true;
+            }
+        }
+        let foodPositionOne = randomLocationx;
+        let foodPositionTwo = randomLocationy;
+        return;
+    }
+
+    method void displayFood(){
+        do Screen.setColor(true);
+        do Screen.drawCircle((foodPositionOne*4) + 2, (foodPositionTwo*4) +2, 2);
+        return;
+    }
+
+    method void drawGrid(){
+        var int thisx; 
+        var int thisy;
+        var Array myGrid;
+
+        let grid = Array.new(x);
+        let thisx = 0;
+
+        while (thisx < x) {
+            let myGrid = Array.new(y);
+            let thisy = 0;
+            while (thisy < y ){
+                let myGrid[thisy] = false;
+                let thisy = thisy + 1;
+            }
+            let grid[thisx] = myGrid;
+            let thisx = thisx + 1;
+        }
+        
+        do Screen.setColor(true);
+        do Screen.drawLine(0, (y*4) + 1, (x*4-1), (y*4) + 1);
+
+        return;
+    }
+
+    method boolean isOccupied(int x, int y) {
+        var Array myGrid;
+        let myGrid = grid[x];
+        if (myGrid[y]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    method void markAsOccupied(int x, int y, boolean occupy){
+        var Array myGrid;
+        let myGrid = grid[x];
+        let myGrid[y] = occupy;
+        return;
+    }
+
+    //Section for creating the random seeds
+
+    method void createSeed(int mySeed){
+        let seed = mySeed;
+        return;
+    }
+
+    method int returnRandom(){
+        let seed = seed + 20251;
+
+        if (seed < 0) {
+            let seed = seed - 32767 - 1;
+        }
+        return seed;
+    }
+
+    method int randomRange(int myRange){
+        var int w;
+        var int z;
+        
+        let w = 1;
+        while (w < myRange) {
+            let w = w * 2 + 1;
+        }
+        let z = returnRandom() & w;
+        while (z > myRange) {
+            let z = returnRandom() & w;
+        }
+        return z;
+    }
+
+    method void drawSnake(int x, int y) {
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x*4, y*4, (x*4)+4, (y*4)+4);
+        do markAsOccupied(x, y, true);
+        return;
+    }
+
+    method void removeSnake(int x, int y){
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x*4, y*4, (x*4)+4, (y*4)+4);
+        do markAsOccupied(x, y, false);
+        return;
+    }
+}

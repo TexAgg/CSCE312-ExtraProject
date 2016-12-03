@@ -1,0 +1,77 @@
+class Game {
+
+    //Define the variables
+    field Snake snake;
+    field int dx;
+    field int dy;
+    field int score;
+    field int level;
+    field int delay;
+    field Grid grid;
+
+    constructor Game new() {
+        //Initialize the game variables
+        let score = 0;
+        let level = 1;
+        let delay = 100;
+        let grid = Grid.new(this, 512, 256);
+
+        //CREATE SNAKE HERE
+        let snake = Snake.new();
+        let dx = 0;
+        let dy = 1;
+
+        do grid.displayFood();
+        return this;
+    }
+
+    method void dispose() {
+        //DO SNAKE DISPOSE HERE
+        do snake.dispose();
+        do grid.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void run(){
+        var int key;
+        var boolean close;
+
+        let close = false;
+
+        while (~close) {
+            let key = Keyboard.keyPressed();
+
+            if (key = 81) {
+                let close = true;
+            } 
+            if (key = 130) {
+                //left arrow --> set snake directions
+                let dx = -1;
+                let dy = 0;
+            }
+            if (key = 131) {
+                //up arrow --> set snake direction
+                let dx = 0;
+                let dy = -1;
+            }
+            if (key = 132) {
+                //right arrow --> set snake directions
+                let dx = 1;
+                let dy = 0;
+            }
+            if (key = 133) {
+                //down arrow --> set snake direction
+                let dx = 0;
+                let dy = 1;
+            }
+            
+            do Sys.wait(100);
+            do snake.move(dx, dy);
+
+        }
+        do Sys.halt();
+        return;
+
+    }
+}

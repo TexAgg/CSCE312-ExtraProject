@@ -1,6 +1,8 @@
 class Main {
     function void main() {
+		var Game game;
 
+		/*
 		// Just testing Snake.
 		var Snake snek;
 		let snek = Snake.new();
@@ -10,6 +12,12 @@ class Main {
 			//do snek.grow();
 		}
 		do snek.dispose();
+		*/
+
+		let game = Game.new();
+		do game.run();
+
+		do game.dispose();
 
 		return;
 	}

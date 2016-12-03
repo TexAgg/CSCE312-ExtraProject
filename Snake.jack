@@ -47,7 +47,8 @@ class Snake {
 
 		//do printBody();
 		
-		do Screen.clearScreen();
+		//do Screen.clearScreen();
+		//do Screen.setColor(false);
 		do Screen.setColor(true);
 
 		// Loop through body and color in the pixels.
@@ -72,6 +73,10 @@ class Snake {
 	method void move(int ddx, int ddy) {
 		var Point p, last;
 		var int i;
+
+		let last = body[length - 1];
+		do Screen.setColor(false);
+		do Screen.drawRectangle(last.getX(), last.getY(), last.getX() + l, last.getY() + l);
 
 		let p = body[0];
 
