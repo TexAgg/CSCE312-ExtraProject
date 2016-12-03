@@ -9,11 +9,56 @@ class Game {
 
     constructor Game new(){
 
+        
+
+
         //Initialize the game variables
         let score = 0;
         let level = 1;
         let delay = 100;
         let grid = Grid.new(this, 512, 256);
+
+        //CREATE SNAKE HERE
+
+        do grid.displayFood();
+        return this;
     }
 
+    method void dispose() {
+        //DO SNAKE DISPOSE HERE
+
+        do grid.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void run(){
+        var int key;
+        var boolean close;
+
+        let close = false;
+
+        while (exit == true) {
+            let key = Keyboard.keyPressed();
+
+            if (key = 81) {
+                let exit = true;
+            } 
+            if (key = 130) {
+                //left arrow --> set snake directions
+            }
+            if (key = 131) {
+                //up arrow --> set snake direction
+            }
+            if (key = 132) {
+                //right arrow --> set snake directions
+            }
+            if (key = 133) {
+                //down arrow --> set snake direction
+            }
+            
+
+        }
+
+    }
 }
