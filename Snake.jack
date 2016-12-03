@@ -77,7 +77,7 @@ class Snake {
 		let last = body[length - 1];
 		do Screen.setColor(false);
 		do Screen.drawRectangle(last.getX(), last.getY(), last.getX() + l, last.getY() + l);
-
+		do last.dispose();
 		let p = body[0];
 
 		let i = length-1;
