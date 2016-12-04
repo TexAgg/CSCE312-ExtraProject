@@ -16,6 +16,7 @@ class Grid {
         let y = (myy - 16) / 4;
 
         do drawGrid();
+        do createFood();
         return this;
     }
 
@@ -42,18 +43,21 @@ class Grid {
         while (~isEmpty) {
             let randomLocationx = randomRange(x);
             let randomLocationy = randomRange(y);
-            if (isOccupied(randomLocationx, randomLocationy)) {
+            if (~isOccupied(randomLocationx, randomLocationy)) {
                 let isEmpty = true;
             }
         }
         let foodPositionOne = randomLocationx;
         let foodPositionTwo = randomLocationy;
+
+        do displayFood();
         return;
     }
 
     method void displayFood(){
         do Screen.setColor(true);
-        do Screen.drawCircle((foodPositionOne*4) + 2, (foodPositionTwo*4) +2, 2);
+        //do Screen.drawCircle((foodPositionOne*4) + 2, (foodPositionTwo*4) +2, 2);
+        do Screen.drawRectangle(foodPositionOne*4, foodPositionTwo*4, foodPositionOne*4+5, foodPositionTwo*4+5);
         return;
     }
 
@@ -76,8 +80,8 @@ class Grid {
             let thisx = thisx + 1;
         }
         
-        do Screen.setColor(true);
-        do Screen.drawLine(0, (y*4) + 1, (x*4-1), (y*4) + 1);
+        //do Screen.setColor(true);
+        //do Screen.drawLine(0, (y*4) + 1, (x*4-1), (y*4) + 1);
 
         return;
     }
@@ -142,5 +146,11 @@ class Grid {
         do Screen.drawRectangle(x*4, y*4, (x*4)+4, (y*4)+4);
         do markAsOccupied(x, y, false);
         return;
+    }
+
+    method Point getFoodLocation() {
+        var Point p;
+        let p = Point.new(foodPositionOne*4, foodPositionTwo*4);
+        return p;
     }
 }

@@ -33,13 +33,17 @@ class Game {
         return;
     }
 
+    // Main game loop.
     method void run(){
         var int key;
         var boolean close;
+        var Point foodLoc, snekLoc;
+        var int dist;
 
         let close = false;
 
         while (~close) {
+
             let key = Keyboard.keyPressed();
 
             if (key = 81) {
@@ -64,6 +68,19 @@ class Game {
                 //down arrow --> set snake direction
                 let dx = 0;
                 let dy = 1;
+            }
+
+            let foodLoc = grid.getFoodLocation();
+            let snekLoc = snake.getHead();
+            if (~(Math.abs(foodLoc.getX()-snekLoc.getX()) > 5) & ~(Math.abs(foodLoc.getY() - snekLoc.getY()))) {
+                do snake.eatFood();
+                do grid.createFood();
+                do Output.printInt(snake.getNumEaten());
+            }
+
+            if (~(snake.getNumEaten() < 15)) {
+                do Output.printString("You win!");
+                do Sys.halt();
             }
             
             do Sys.wait(100);

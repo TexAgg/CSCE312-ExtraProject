@@ -101,7 +101,7 @@ class Snake {
 		var Point p, last;
 		
 		let last = body[length - 1];
-		let p = Point.new(last.getX()-l, last.getY()-l);
+		let p = Point.new(last.getX()+l, last.getY()+l);
 		let body[length] = p;
 		let length = length + 1;
 
@@ -149,15 +149,13 @@ class Snake {
 	Checks if a number is divisible by 5 by checking the last digit.
 	I have no idea if this works.
 	*/
-	method boolean isDivisibleBy5(int n) {
-		var String str;
-		var int strlen;
-		var char last;
+	method boolean isDivisibleBy3(int n) {
+		var int wholeNum, whole, remainder;
 
-		do str.intValue(n);
-		let strlen = str.length();
-		let last = str.charAt(strlen - 1);
-		if (last = 0 | last = 5) {
+		let wholeNum = Math.divide(n, 3);
+		let whole = 3 * wholeNum;
+		let remainder = n - whole;
+		if (remainder = 0) {
 			return true;
 		}
 		return false;
@@ -165,9 +163,12 @@ class Snake {
 
 	method void eatFood() {
 		let foodEaten = foodEaten + 1;
-		if (isDivisibleBy5(foodEaten)) {
+		
+		if (isDivisibleBy3(foodEaten)) {
 			do grow();
 		}
+		
+		//do grow();
 		return;
 	}
 
@@ -177,6 +178,10 @@ class Snake {
 
 	method int getLength() {
 		return length;
+	}
+
+	method int getNumEaten() {
+		return foodEaten;
 	}
 
 	method void printBody() {
