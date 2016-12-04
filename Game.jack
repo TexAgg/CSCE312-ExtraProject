@@ -75,6 +75,8 @@ class Game {
             if (~(Math.abs(foodLoc.getX()-snekLoc.getX()) > 5) & ~(Math.abs(foodLoc.getY() - snekLoc.getY()))) {
                 do snake.eatFood();
                 do grid.createFood();
+                do Screen.setColor(false);
+                do Screen.drawRectangle(foodLoc.getX(), foodLoc.getY(), foodLoc.getX()+5, foodLoc.getY()+5);
                 do Output.printInt(snake.getNumEaten());
             }
 
