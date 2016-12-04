@@ -70,6 +70,7 @@ class Game {
                 let dy = 1;
             }
 
+            // If the snake runs into food.
             let foodLoc = grid.getFoodLocation();
             let snekLoc = snake.getHead();
             if (~(Math.abs(foodLoc.getX()-snekLoc.getX()) > 5) & ~(Math.abs(foodLoc.getY() - snekLoc.getY()) > 5)) {
@@ -77,9 +78,11 @@ class Game {
                 do grid.createFood();
                 do Screen.setColor(false);
                 do Screen.drawRectangle(foodLoc.getX(), foodLoc.getY(), foodLoc.getX()+5, foodLoc.getY()+5);
+
                 do Output.printInt(snake.getNumEaten());
             }
 
+            // If the snake eats enough food
             if (~(snake.getNumEaten() < 15)) {
                 do Output.printString("You win!");
                 do Sys.halt();

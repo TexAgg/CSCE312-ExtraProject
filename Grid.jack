@@ -135,20 +135,6 @@ class Grid {
         return z;
     }
 
-    method void drawSnake(int x, int y) {
-        do Screen.setColor(true);
-        do Screen.drawRectangle(x*4, y*4, (x*4)+4, (y*4)+4);
-        do markAsOccupied(x, y, true);
-        return;
-    }
-
-    method void removeSnake(int x, int y){
-        do Screen.setColor(false);
-        do Screen.drawRectangle(x*4, y*4, (x*4)+4, (y*4)+4);
-        do markAsOccupied(x, y, false);
-        return;
-    }
-
     method Point getFoodLocation() {
         var Point p;
         let p = Point.new(foodPositionOne*4, foodPositionTwo*4);

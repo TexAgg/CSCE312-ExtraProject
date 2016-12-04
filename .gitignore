@@ -16,3 +16,6 @@ Snake.zip
 
 # Testing the snake logic in javascript.
 jstest
+
+VirtualMachine
+*.asm
