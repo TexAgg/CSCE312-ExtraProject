@@ -72,7 +72,7 @@ class Game {
 
             let foodLoc = grid.getFoodLocation();
             let snekLoc = snake.getHead();
-            if (~(Math.abs(foodLoc.getX()-snekLoc.getX()) > 5) & ~(Math.abs(foodLoc.getY() - snekLoc.getY()))) {
+            if (~(Math.abs(foodLoc.getX()-snekLoc.getX()) > 5) & ~(Math.abs(foodLoc.getY() - snekLoc.getY()) > 5)) {
                 do snake.eatFood();
                 do grid.createFood();
                 do Screen.setColor(false);
