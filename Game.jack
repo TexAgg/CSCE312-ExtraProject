@@ -83,9 +83,10 @@ class Game {
             }
 
             // If the snake eats enough food
-            if (~(snake.getNumEaten() < 15)) {
+            if (~(snake.getNumEaten() < 5)) { // DONT FORGET TO CHANGE THIS BACK TO 15
                 do Output.printString("You win!");
-                do Sys.halt();
+                return;
+                //do Sys.halt();
             }
             
             do Sys.wait(100);

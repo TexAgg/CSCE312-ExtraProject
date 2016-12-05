@@ -1,6 +1,8 @@
 class Main {
     function void main() {
 		var Game game;
+		var boolean playAgain;
+		var int key;
 
 		/*
 		// Just testing Snake.
@@ -18,7 +20,21 @@ class Main {
 		let game = Game.new();
 		do game.run();
 
+		do Output.printString("Press Q to quit.");
+		let key = Keyboard.keyPressed();
+		while (~(key = 81)) {
+			do Screen.clearScreen();
+			let game = Game.new();
+			do game.run();
+			do Output.printString("Press Q to quit.");
+			do Sys.wait(1000);
+			let key = Keyboard.keyPressed();
+		}
+
+		do Output.printString("Goodbye!");
+
 		do game.dispose();
+		do Sys.halt();
 		
 		return;
 	}
