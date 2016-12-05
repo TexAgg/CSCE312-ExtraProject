@@ -27,7 +27,7 @@ class Main {
 			let game = Game.new();
 			do game.run();
 			do Output.printString("Press Q to quit.");
-			do Sys.wait(1000);
+			do Sys.wait(5000);
 			let key = Keyboard.keyPressed();
 		}
 
